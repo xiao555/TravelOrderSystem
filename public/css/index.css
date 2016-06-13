@@ -1,0 +1,327 @@
+/*Designed by xiao555
+ Mar.2016*/
+@charset "utf-8";
+
+*{
+  position: relative;
+	margin:0;
+	padding:0;
+	border:0;
+	font-size: 100%;
+	vertical-align: baseline;
+	outline:none;
+}
+
+html,body{
+	font-family: "Corbel",'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', sans-serif;
+	width:100%;
+	height:100%;
+  min-width: 1250px;
+/*	overflow-y: hidden;*/
+/*	overflow-x: hidden;*//*加上这个waypoint失效了，具体原因待查，妈的浪费我好多时间*/
+}
+
+li {
+	list-style: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: inherit;
+  border-left: 1px solid #c7c7c7;
+  border-bottom: 1px solid #c7c7c7;
+}
+
+th, td {
+  border-top: 1px solid #c7c7c7;
+  border-right: 1px solid #c7c7c7;
+  padding: 5px;
+  padding-left: 10px;
+  text-align: left;
+  height: 20px;
+  line-height: 20px;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: initial;
+}
+
+select,
+option {
+  cursor: pointer;
+}
+
+.button {
+  height: 30px;
+  line-height: initial;
+  width: 100px;
+  padding: 5px 5px;
+  background-color: #2189bf;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 4px;
+}
+
+.button:hover {
+  font-size: 18px;
+  padding: 1px 5px;
+}
+
+.tel {
+  height: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid #d7d5d6;
+  box-shadow: 1px 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.tel-title {
+  border-bottom: 1px solid #e6e6e8;
+  color: #aaa;
+  background: #f4f5f6;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+}
+
+.tel-content {
+  padding: 20px 5px;
+}
+
+.tel-footer {
+  position: absolute;
+  width: 100%;
+  border-top: 1px solid #e6e6e8;
+  color: #aaa;
+  background: #f4f5f6;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  bottom: 0;
+}
+
+.tel-opt {
+  border-bottom: 1px solid #2189bf;
+  text-align: left;;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.clearFix:before,
+.clearFix:after {
+        content:"";
+        display: table ;
+         clear:both;
+}
+
+.flex-list {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
+/*header*/
+.header{
+	display: block;
+	position: fixed !important;
+	width: 100%;
+	top: 0;
+	height: 60px;
+    position: relative;
+    z-index: 999;
+}
+.logo{
+  margin-left: 10%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  width: 194px;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+.nav{
+	display: block;
+	float: right;
+	margin-right: 80px;
+	margin-top: 20px;
+}
+
+.navigation{
+	float: left;
+
+}
+.navigation > li {
+	border-right: solid 1px black;
+}
+.navigation > li:last-child {
+	border-right: none;
+}
+.nav-button{
+	width: 160px;
+	float: left;
+	position: relative;
+	display: block;
+	list-style: none;
+	cursor: pointer;
+	text-align: center;
+	font-family: merloroundserifRgIt;
+}
+
+.nav-button:hover {
+	font-size: larger;
+	font-weight: bolder;
+	-webkit-animation: Glow 1.5s ease infinite alternate;
+            animation: Glow 1.5s ease infinite alternate;
+}
+
+
+/*slide*/
+.slide {
+  width:100%;
+	height:100%;
+	position: relative;
+	box-shadow:inset 0px 5px 20px rgba(0,0,0,0.2);
+	float: left;
+}
+
+.inner-slide {
+  width: 100%;
+  height: 60%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.list-title {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  letter-spacing: 5px;
+}
+
+.list {
+  height: 100%;
+}
+
+.list-item {
+  display: block;
+  height: 100%;
+}
+
+button[name="modifi"],
+button[name="order"] {
+  height: 26px;
+  width: 50px;
+  text-align: center;
+  line-height: 26px;
+  background-color: #2189bf;
+  opacity: .9;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 10px;
+}
+
+button[name="delete"] {
+  height: 26px;
+  width: 50px;
+  text-align: center;
+  line-height: 26px;
+  background-color: red;
+  opacity: .9;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 10px;
+}
+
+button[name="modifi"]:hover,
+button[name="order"]:hover {
+  font-size: 14px;
+  line-height: 26px;
+}
+
+button[name="delete"]:hover {
+  font-size: 14px;
+  line-height: 26px;
+}
+
+#slide1Modal table {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#slide1Modal input {
+  width: 50px;
+}
+
+/*预定*/
+
+.queFrom,
+.queTo,
+.queUser,
+.queLoc,
+.queArea {
+  width: 100px;
+  border: 1px solid;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/*查询*/
+
+input[name="userName"] {
+  border: 1px solid #000;
+}
+
+#slide3 input {
+  width: 102px;
+  height: 23px;
+}
+
+#slide3 table th,
+#slide3 table td {
+  width: 100px;
+  height: 40px;
+}
+
+/*客户*/
+
+.msg {
+  width: 100%;
+  text-align: left;;
+  padding-left: 20%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.ordMsg {
+  width: 60%;
+}
+
+.list {
+  width: 100%;
+}
+
+.ordMsg .tel .list-item .tel-title {
+  height: 30px;
+  line-height: 30px;
+}
+
+.sm {
+  height: 30px;
+  line-height: 30px;
+}

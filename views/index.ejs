@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>旅行订票系统</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/css/index.css' />
+  </head>
+  <body>
+    <!--header-->
+  	<div class="header" id="header">
+  		<div class="logo">旅行订票系统</div>
+  		<div class="nav">
+  			<ul class="navigation">
+  				<li class="nav-button" data-slide="1">基础数据</li>
+  				<li class="nav-button" data-slide="2">预定</li>
+  				<li class="nav-button" data-slide="3">查询</li>
+          <li class="nav-button" data-slide="4">客户</li>
+  			</ul>
+  		</div>
+  	</div>
+
+
+    <div class="slide" id="slide1" data-slide="1" data-stellar-background-ratio="0">
+      <div class="inner-slide">
+        <ul class="list flex-list">
+
+          <li class="list-item tel">
+            <div class="tel-title">
+              航班数据
+            </div>
+            <div class="tel-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th>航班编号</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>价格</th>
+                    <th>座位</th>
+                    <th>剩余座位</th>
+                    <th>修改</th>
+                    <th>删除</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr target="1">
+                    <td>0001</td>
+                    <td>北京</td>
+                    <td>上海</td>
+                    <td>1000</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tel-footer">
+              <button class="button" type="button" name="add">添加</button>
+            </div>
+          </li>
+          <li class="list-item tel">
+            <div class="tel-title">
+              大巴数据
+            </div>
+            <div class="tel-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th>大巴编号</th>
+                    <th>地区</th>
+                    <th>价格</th>
+                    <th>座位</th>
+                    <th>剩余座位</th>
+                    <th>修改</th>
+                    <th>删除</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr target="2">
+                    <td>0001</td>
+                    <td>北京</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tel-footer">
+              <button class="button" type="button" name="add">添加</button>
+            </div>
+          </li>
+
+          <li class="list-item tel">
+            <div class="tel-title">
+              宾馆数据
+            </div>
+            <div class="tel-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th>宾馆编号</th>
+                    <th>地区</th>
+                    <th>价格</th>
+                    <th>房间数</th>
+                    <th>剩余房间</th>
+                    <th>修改</th>
+                    <th>删除</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr target="3">
+                    <td>0001</td>
+                    <td>北京</td>
+                    <td>300</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="modifi">修改</button></td>
+                    <td><button type="button" name="delete">删除</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tel-footer">
+              <button class="button" type="button" name="add">添加</button>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="slide" id="slide2" data-slide="2" data-stellar-background-ratio="0.3">
+      <div class="inner-slide">
+        <ul class="list flex-list">
+
+          <li class="list-item tel">
+            <div class="tel-title">
+              预定航班
+            </div>
+            <div class="tel-content">
+              <div class="tel-opt">
+                From:<label>
+                    <select class="queFrom" name="">
+                      <option value="option">北京</option>
+                      <option value="option">上海</option>
+                    </select>
+                  </label>
+                To:<label>
+                    <select class="queTo" name="">
+                      <option value="option">北京</option>
+                      <option value="option">上海</option>
+                    </select>
+                  </label>
+                <button class="button" type="button" name="button">查询</button>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>航班编号</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>价格</th>
+                    <th>座位</th>
+                    <th>剩余座位</th>
+                    <th>预定</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr target="1">
+                    <td>0001</td>
+                    <td>北京</td>
+                    <td>上海</td>
+                    <td>1000</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+          <li class="list-item tel">
+            <div class="tel-title">
+              预定大巴
+            </div>
+            <div class="tel-content">
+              <div class="tel-opt">
+                <span>
+                  Location:
+                    <label>
+                      <select class="queLoc" name="">
+                        <option value="option">北京</option>
+                        <option value="option">上海</option>
+                      </select>
+                    </label>
+                  </span>
+                <button class="button" type="button" name="button">查询</button>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>大巴编号</th>
+                    <th>地区</th>
+                    <th>价格</th>
+                    <th>座位</th>
+                    <th>剩余座位</th>
+                    <th>预定</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr target="2">
+                    <td>0001</td>
+                    <td>北京</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+
+          <li class="list-item tel">
+            <div class="tel-title">
+              预定宾馆
+            </div>
+            <div class="tel-content">
+              <div class="tel-opt">
+                <span>
+                  地区:
+                    <label>
+                      <select class="queArea" name="">
+                        <option value="option">北京</option>
+                        <option value="option">上海</option>
+                      </select>
+                    </label>
+                </span>
+                <button class="button" type="button" name="button">查询</button>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>宾馆编号</th>
+                    <th>地区</th>
+                    <th>价格</th>
+                    <th>房间数</th>
+                    <th>剩余房间</th>
+                    <th>预定</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr target="3">
+                    <td>0001</td>
+                    <td>北京</td>
+                    <td>300</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" name="order">预定</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="slide" id="slide3" data-slide="3" data-stellar-background-ratio="0.3">
+      <div class="inner-slide">
+        <ul class="list flex-list">
+
+          <li class="list-item">
+            <div class="tel">
+              <div class="tel-title">
+                查询
+              </div>
+              <div class="tel-content">
+                <div class="tel-opt">
+                航班  From:<label>
+                      <select class="queFrom" name="">
+                        <option value="option">北京</option>
+                        <option value="option">上海</option>
+                      </select>
+                    </label>
+                  To:<label>
+                      <select class="queTo" name="">
+                        <option value="option">北京</option>
+                        <option value="option">上海</option>
+                      </select>
+                    </label>
+                  <button class="button" type="button" name="button">查询</button>
+                </div>
+                <div class="tel-opt">
+                  <span>
+                    大巴  Location:
+                      <label>
+                        <select class="queLoc" name="">
+                          <option value="option">北京</option>
+                          <option value="option">上海</option>
+                        </select>
+                      </label>
+                    </span>
+                  <button class="button" type="button" name="button">查询</button>
+                </div>
+                <div class="tel-opt">
+                  <span>
+                    宾馆  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地区:
+                      <label>
+                        <select class="queArea" name="">
+                          <option value="option">北京</option>
+                          <option value="option">上海</option>
+                        </select>
+                      </label>
+                  </span>
+                  <button class="button" type="button" name="button">查询</button>
+                </div>
+                <div class="tel-opt">
+                  <span>
+                    客户  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名:
+                      <label>
+                        &nbsp;&nbsp;&nbsp;<input type="text" name="userName" value="">
+                      </label>
+                  </span>
+                  <button class="button" type="button" name="button">查询</button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-item">
+            <div class="tel">
+              <div class="tel-title">
+                查询结果
+              </div>
+              <div class="tel-content">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>航班编号</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>价格</th>
+                      <th>座位</th>
+                      <th>剩余座位</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr target="1">
+                      <td>0001</td>
+                      <td>北京</td>
+                      <td>上海</td>
+                      <td>1000</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide" id="slide4" data-slide="4" data-stellar-background-ratio="0.3">
+      <div class="inner-slide">
+        <ul class="list flex-list">
+          <li class="list-item">
+            <div class="tel">
+              <div class="tel-title">
+                用户信息
+              </div>
+              <div class="tel-content">
+                <div class="tel-opt">
+                  <span>
+                    选择用户：
+                    <label>
+                      <select class="queUser" name="">
+                        <option value="option">张三</option>
+                        <option value="option">李四</option>
+                      </select>
+                    </label>
+                  </span>
+                  <button class="button" type="button" name="button">查询</button>
+                </div>
+                <div class="nowUser msg">
+                  当前用户： <span>张三</span>
+                </div>
+                <div class="nowPrice msg">
+                  订单总额：1000RMB
+                </div>
+                <div class="iscomplet msg">
+                  路线完整
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-item ordMsg">
+            <div class="tel">
+              <div class="tel-title">
+                预订信息
+              </div>
+              <div class="tel-content">
+                <ul class="list flex-list">
+                  <li class="list-item tel">
+                    <div class="tel-title sm">
+                      航班
+                    </div>
+                    <div class="tel-content">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>航班编号</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>价格</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr target="1">
+                            <td>0001</td>
+                            <td>北京</td>
+                            <td>上海</td>
+                            <td>1000</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                  <li class="list-item tel">
+                    <div class="tel-title sm">
+                      大巴
+                    </div>
+                    <div class="tel-content">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>大巴编号</th>
+                            <th>地区</th>
+                            <th>价格</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr target="2">
+                            <td>0001</td>
+                            <td>北京</td>
+                            <td>100</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+
+                  <li class="list-item tel">
+                    <div class="tel-title sm">
+                      宾馆
+                    </div>
+                    <div class="tel-content">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>大巴编号</th>
+                            <th>地区</th>
+                            <th>价格</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr target="2">
+                            <td>0001</td>
+                            <td>北京</td>
+                            <td>100</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- bootstrap modal slide1 -->
+    <div id="slide1Modal" class="modal fade modifi">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">修改数据</h4>
+          </div>
+          <div class="modal-body">
+            <table>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Jquery -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/js.js"></script>
+    <script src="/js/jquery.stellar.min.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/jquery.easing.1.3.js"></script>
+    <script src="/js/index.js"></script>
+  </body>
+</html>
