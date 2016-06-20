@@ -344,3 +344,7 @@ input[name="userName"] {
   height: 30px;
   line-height: 30px;
 }
+
+.FlightLine {
+  width: 100%;
+}

@@ -41,10 +41,11 @@ module.exports = {
             });
         });
     },
-    queryByTo: function (req, cb) {
-        var arrcity = req.body.arrcity; 
+    queryByFromTo: function (req, cb) {
+        var arrcity = req.body.arrcity;
+        var fromcity = req.body.fromcity; 
         pool.getConnection(function(err, connection) {
-            connection.query($sql.queryByTo, arrcity, function(err, result) {
+            connection.query($sql.queryByFromTo, [fromcity,arrcity], function(err, result) {
                 console.log(err +" " +result);
                 if(err) return cb(err);               
                 connection.release();

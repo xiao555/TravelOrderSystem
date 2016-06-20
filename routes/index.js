@@ -232,6 +232,21 @@ router.post("/queFlightLine", function(req, res, next) {
 	})
 })
 
+// 查询航班price
+router.post("/queFlightPrice", function(req, res, next) {
+	flightDao.queryByFromTo(req, function(err, result) {
+		if(err) {
+			res.status(403).send({
+				msg: "查询失败"
+			})
+		} else {
+			res.status(200).send({
+				result: result[0]
+			})
+		}
+	})
+})
+
 
 
 module.exports = router;

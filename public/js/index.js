@@ -1,4 +1,7 @@
 $(document).ready(function(){
+  var flight=[];
+  var hotel=[];
+  var bus=[];
   //contains 定义数组里是否包含元素
   Array.prototype.contains = function(needle) {
     for(i in this) {
@@ -383,6 +386,14 @@ $(document).ready(function(){
       var tbody = $(".showFlight tbody");
       tbody.find("tr").remove();
       for (var i = 0; i < data.length; i++) {
+        flight[i] = {
+          fromcity: data[i].fromcity,
+          arr_city: data[i].arr_city,
+          price: data[i].price,
+          fli_numseats: data[i].fli_numseats,
+          fli_numavail: data[i].fli_numavail,
+          fli_num: data[i].fli_num
+        };
          tbody.append('<tr target="1">' +
         '<td>' + data[i].fli_num + '</td>' +
         '<td>' + data[i].price + '</td>' +
@@ -562,31 +573,78 @@ $(document).ready(function(){
       })
     }
   }
-  function showFlightLine(From,To,arrcity) {
-    for (var i = 0; i < From.length; i++) {
-        arrcity.push(From[i].arr_city);
-        if(From[i].arr_city == To) return;
-        queFlightLine(From[i].arr_city,To,arrcity);
+  // 获取航班价格
+  function getPrice(From,To){
+    var _price;
+    for(var i=0;i< flight.length;i++){
+      if(flight[i].fromcity == From&&flight[i].arr_city == To){
+        _price = flight[i].price;
+      }
     }
-
+    console.log(From+" "+To+" "+_price);
+    return _price;
+  }
+  // 处理航线
+  function initFlightLine(line) {
+    var price = 0;
+    for(var i=0;i < line.length-1;i++) {
+      price+=getPrice(line[i],line[i+1]);
+    }
+    console.log(price);
+    var html = '';
+    for(var i=0;i < line.length-1;i++){
+      html+= line[i]+'——';
+    }
+    html+= line[line.length-1];
+    var show = $(".FlightLine tbody");
+    show.append(
+      '<tr target="1">'+
+      '<td>'+ html +'</td>'+
+      '<td>'+ price +'</td>'+
+      '<td><button type="button" name="order">预定</button></td>'+
+      '</tr>'
+      )
+  }
+  
+  function showFlightLine(lines) {
+    console.log(lines);
+    initFlightLine(lines);
   }
   //查询航线
-  function queFlightLine(queFrom,queTo,arrcity){
-    var data = {
-      fromcity: queFrom,
-      arrcity: queTo
-    };
-    $.ajax({
-      url: '/queFlightLine',
-      type: 'POST',
-      data: data,
-      success: function(data) {
-        showFlightLine(data.From,queTo,arrcity);
-      },
-      error: function(data) {
-        return 0;
+  function queFlightLine2(init,queFrom,queTo,lines){
+    for (var i = flight.length - 1; i >= 0; i--) {
+      if(flight[i].fromcity == queFrom) {
+        var newlines = lines;
+        console.log
+        if(flight[i].arr_city == queTo) {   
+          console.log(queFrom+" "+flight[i].arr_city)     
+          newlines.push(flight[i].arr_city);
+          showFlightLine(newlines);        
+        } else if(!newlines.contains(flight[i].arr_city)){
+          console.log(queFrom+" "+flight[i].arr_city)
+          newlines.push(flight[i].arr_city);
+          queFlightLine2(init,flight[i].arr_city,queTo,newlines);
+        }
       }
-    })
+    }
+    lines.pop();
+  }
+  function queFlightLine(queFrom,queTo){
+    for (var i = flight.length - 1; i >= 0; i--) {
+      if(flight[i].fromcity == queFrom) {
+        var lines=new Array();
+        lines.push(queFrom);
+        if(flight[i].arr_city == queTo) {
+          console.log(queFrom+" "+flight[i].arr_city);
+          lines.push(flight[i].arr_city);
+          showFlightLine(lines);        
+        } else {
+          console.log(queFrom+" "+flight[i].arr_city);
+          lines.push(flight[i].arr_city);
+          queFlightLine2(queFrom,flight[i].arr_city,queTo,lines);
+        }
+      }
+    }
   }
 
 
@@ -623,13 +681,12 @@ $(document).ready(function(){
     }
     //查询航线
     if($(event.target).is('.queFlightLine')) {
+      var show = $(".FlightLine tbody");
+      show.find("tr").remove();
       var queFrom = $('.queFrom').find('option:selected').text(); 
       console.log(queFrom);
       var queTo = $('.queTo').find('option:selected').text();
-      var arrcity = Array();
-      arrcity.push(queFrom);
-      queFlightLine(queFrom,queTo,arrcity);
-      console.log(arrcity);
+      queFlightLine(queFrom,queTo);
     }
 });
 })
