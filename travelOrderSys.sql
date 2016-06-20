@@ -37,6 +37,6 @@ create table customers121 (
 create table reservations121 (
 	cus_name varchar(40),
 	res_type int,
-	ord_no int
+	ord_no varchar(40)
 );
 -- res_type指出预订的类型（1为预订航班，2为预订宾馆房间，3为预订大巴车）  

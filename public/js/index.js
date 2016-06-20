@@ -38,6 +38,7 @@ $(document).ready(function(){
       data: data,
       success: function(data) {
         alert("添加用户成功");
+        $(".userName").html(name);
       },
       error: function(data) {
         alert(data.msg);
@@ -377,6 +378,18 @@ $(document).ready(function(){
         alert(data.msg);
       }
     })
+    // 获取所有用户
+      $.ajax({
+        url: '/users/queryAll',
+        type: 'POST',
+        success: function(data) {
+          console.log(data.users);
+          showUsers(data.users);
+        },
+        error: function(data) {
+          alert(data.msg);
+        }
+      })
   }
 
   //数据处理
@@ -434,6 +447,13 @@ $(document).ready(function(){
       var tbody = $(".showHotel tbody");
       tbody.find("tr").remove();
       for (var i = 0; i < data.length; i++) {
+        hotel[i] = {
+          hot_num: data[i].hot_num,
+          location: data[i].location,
+          hot_price: data[i].hot_price,
+          hot_romNum: data[i].hot_romNum,
+          hot_avaNum: data[i].hot_avaNum
+        };
          tbody.append('<tr target="2">' +
         '<td>' + data[i].hot_num + '</td>' +
         '<td>' + data[i].location + '</td>' +
@@ -444,10 +464,30 @@ $(document).ready(function(){
         '<td><button type="button" name="delete">删除</button></td>'+
         '</tr>');
       };
+      var locations = [];
+      for (var i = 0; i < data.length; i++) {
+        if(!locations.contains(data[i].location)) {
+          locations.push(data[i].location);
+        }
+      };
+      var queArea = $(".queArea");
+      queArea.find("option").remove();
+      for (var i = locations.length - 1; i >= 0; i--) {
+        queArea.append(
+          '<option value="option">'+ locations[i] +'</option>'
+          )
+      }
     } else if(type == 3) {
       var tbody = $(".showBus tbody");
       tbody.find("tr").remove();
       for (var i = 0; i < data.length; i++) {
+        bus[i] = {
+          bus_num: data[i].bus_num,
+          location: data[i].location,
+          bus_price: data[i].bus_price,
+          bus_busNum: data[i].bus_busNum,
+          bus_avaNum: data[i].bus_avaNum
+        };
          tbody.append('<tr target="3">' +
         '<td>' + data[i].bus_num + '</td>' +
         '<td>' + data[i].location + '</td>' +
@@ -458,8 +498,31 @@ $(document).ready(function(){
         '<td><button type="button" name="delete">删除</button></td>'+
         '</tr>');
       };
+      var locations = [];
+      for (var i = 0; i < data.length; i++) {
+        if(!locations.contains(data[i].location)) {
+          locations.push(data[i].location);
+        }
+      };
+      var queLoc = $(".queLoc");
+      queLoc.find("option").remove();
+      for (var i = locations.length - 1; i >= 0; i--) {
+        queLoc.append(
+          '<option value="option">'+ locations[i] +'</option>'
+          )
+      }
     } else {
       return alert("error");
+    }
+  }
+  // show user
+  function showUsers(data){
+    var queUser = $(".queUser");
+    queUser.find("option").remove();
+    for (var i = data.length - 1; i >= 0; i--) {
+      queUser.append(
+        '<option value="option">'+data[i].cus_name+'</option>'
+        )
     }
   }
 
@@ -587,21 +650,27 @@ $(document).ready(function(){
   // 处理航线
   function initFlightLine(line) {
     var price = 0;
-    for(var i=0;i < line.length-1;i++) {
-      price+=getPrice(line[i],line[i+1]);
+    for(var i=0;i < line.length-1;i+=2) {
+      price+=getPrice(line[i],line[i+2]);
     }
     console.log(price);
     var html = '';
-    for(var i=0;i < line.length-1;i++){
+    for(var i=0;i < line.length-1;i+=2){
       html+= line[i]+'——';
     }
     html+= line[line.length-1];
+    var num = '';
+    for(var i=1;i < line.length-2;i+=2){
+      num+= line[i]+',';
+    }
+    num+= line[line.length-2];
     var show = $(".FlightLine tbody");
     show.append(
       '<tr target="1">'+
+      '<td>'+ num +'</td>'+
       '<td>'+ html +'</td>'+
       '<td>'+ price +'</td>'+
-      '<td><button type="button" name="order">预定</button></td>'+
+      '<td><button class="orderBtn" type="button" name="orderFlight">预定</button></td>'+
       '</tr>'
       )
   }
@@ -617,16 +686,19 @@ $(document).ready(function(){
         var newlines = lines;
         console.log
         if(flight[i].arr_city == queTo) {   
-          console.log(queFrom+" "+flight[i].arr_city)     
+          console.log(queFrom+" "+flight[i].arr_city)
+          newlines.push(flight[i].fli_num);     
           newlines.push(flight[i].arr_city);
           showFlightLine(newlines);        
         } else if(!newlines.contains(flight[i].arr_city)){
           console.log(queFrom+" "+flight[i].arr_city)
+          newlines.push(flight[i].fli_num);
           newlines.push(flight[i].arr_city);
           queFlightLine2(init,flight[i].arr_city,queTo,newlines);
         }
       }
     }
+    lines.pop();
     lines.pop();
   }
   function queFlightLine(queFrom,queTo){
@@ -636,10 +708,12 @@ $(document).ready(function(){
         lines.push(queFrom);
         if(flight[i].arr_city == queTo) {
           console.log(queFrom+" "+flight[i].arr_city);
+          lines.push(flight[i].fli_num);
           lines.push(flight[i].arr_city);
           showFlightLine(lines);        
         } else {
           console.log(queFrom+" "+flight[i].arr_city);
+          lines.push(flight[i].fli_num);
           lines.push(flight[i].arr_city);
           queFlightLine2(queFrom,flight[i].arr_city,queTo,lines);
         }
@@ -647,6 +721,175 @@ $(document).ready(function(){
     }
   }
 
+  //查询大巴
+  function queBus(location) {
+    var queBusResult = $(".queBusResult tbody");
+    queBusResult.find("tr").remove();
+    for (var i = bus.length - 1; i >= 0; i--) {
+      if(bus[i].location == location) {
+        queBusResult.append(
+          '<tr target="3">'+
+                    '<td>'+bus[i].bus_num +'</td>'+
+                    '<td>'+ bus[i].bus_price+'</td>'+
+                    '<td>'+ bus[i].bus_busNum+'</td>'+
+                    '<td>'+bus[i].bus_avaNum +'</td>'+
+                    '<td><button class="orderBtn" type="button" name="orderBus">预定</button></td>'+
+                  '</tr>'
+          )
+      }
+    }
+  }
+  //查询宾馆
+  function queHotel(location) {
+    var queHotelResult = $(".queHotelResult tbody");
+    queHotelResult.find("tr").remove();
+    for (var i = hotel.length - 1; i >= 0; i--) {
+      if(hotel[i].location == location) {
+        queHotelResult.append(
+          '<tr target="2">'+
+                    '<td>'+hotel[i].hot_num +'</td>'+
+                    '<td>'+ hotel[i].hot_price+'</td>'+
+                    '<td>'+ hotel[i].hot_romNum+'</td>'+
+                    '<td>'+hotel[i].hot_avaNum +'</td>'+
+                    '<td><button class="orderBtn" type="button" name="orderHot">预定</button></td>'+
+                  '</tr>'
+          )
+      }
+    }
+  }
+  //订航班
+  function orderFlight(user,num) {
+    var data={
+      cus_name: user,
+      res_type: 1,
+      ord_no: num
+    };
+    $.ajax({
+      url: '/orderFlight',
+      type: 'POST',
+      data: data,
+      success: function(data) {
+        alert("预定："+ num+"航班成功");
+      },
+      error: function(data) {
+        alert("预定："+ num+"航班失败");
+      }
+    })
+  }
+  // 订大巴
+  function orderBus(user,num) {
+    var data={
+      cus_name: user,
+      res_type: 3,
+      ord_no: num
+    };
+    $.ajax({
+      url: '/orderBus',
+      type: 'POST',
+      data: data,
+      success: function(data) {
+        alert("预定："+ num+"大巴成功");
+      },
+      error: function(data) {
+        alert("预定："+ num+"大巴失败");
+      }
+    })
+  }
+  // 订宾馆
+  function orderHot(user,num) {
+    var data={
+      cus_name: user,
+      res_type: 2,
+      ord_no: num
+    };
+    $.ajax({
+      url: '/orderHot',
+      type: 'POST',
+      data: data,
+      success: function(data) {
+        alert("预定："+ num+"宾馆成功");
+      },
+      error: function(data) {
+        alert("预定："+ num+"宾馆失败");
+      }
+    })
+  }
+  // 获取订单信息
+  function getReserveMsg(user) {
+    var data= {
+      cus_name: user
+    };
+    $.ajax({
+      url: '/getReserveMsg',
+      type: 'POST',
+      data: data,
+      success: function(data) {
+        console.log(data.result);
+        showOrderMsg(data.result);
+      },
+      error: function(data) {
+        alert("获取订单信息失败");
+      }
+    })
+  }
+  // show 订单信息
+  function showOrderMsg(data) {
+    console.log(data);
+    var _price =0;
+    var flightMsg = $(".ordFlightMsg tbody");
+    flightMsg.find("tr").remove();
+    var busMsg = $(".ordBusMsg tbody");
+    busMsg.find("tr").remove();
+    var hotMsg = $(".ordHotMsg tbody");
+    hotMsg.find("tr").remove();
+    for (var j = data.length - 1; j >= 0; j--) {
+      var type = data[j].res_type;
+      var num = data[j].ord_no;
+      console.log(i+ " " +type +" " +num);
+      if(type == 1) {
+        for (var i = 0; i < data.length; i++) {
+          if(flight[i].fli_num == num) {
+            _price += flight[i].price;
+            flightMsg.append(
+              '<tr target="1">'+
+                            '<td>'+ flight[i].fli_num +'</td>'+
+                            '<td>'+ flight[i].fromcity +'</td>'+
+                            '<td>'+ flight[i].arr_city+'</td>'+
+                            '<td>'+ flight[i].price+'</td>'+
+                          '</tr>'
+              )
+          }
+        }
+      } else if(type == 2) {
+        for (var i = hotel.length - 1; i >= 0; i--) {
+          if(hotel[i].hot_num == num) {
+            _price += hotel[i].hot_price;
+            hotMsg.append(
+              '<tr target="1">'+
+                            '<td>'+ hotel[i].hot_num +'</td>'+
+                            '<td>'+ hotel[i].location +'</td>'+
+                            '<td>'+ hotel[i].hot_price+'</td>'+
+                          '</tr>'
+              )
+          }
+        }
+    } else if(type == 3) {
+      for (var i = bus.length - 1; i >= 0; i--) {
+          if(bus[i].bus_num == num) {
+            _price += bus[i].bus_price;
+            busMsg.append(
+              '<tr target="1">'+
+                            '<td>'+ bus[i].bus_num +'</td>'+
+                            '<td>'+ bus[i].location +'</td>'+
+                            '<td>'+ bus[i].bus_price+'</td>'+
+                          '</tr>'
+              )
+          }
+        }
+    }
+  }
+  $(".nowPrice span").text(_price);
+}
 
 
 
@@ -678,6 +921,7 @@ $(document).ready(function(){
     // 添加用户
     if($(event.target).is('#applyNameBtn')) {
       addUser();
+      updateData();
     }
     //查询航线
     if($(event.target).is('.queFlightLine')) {
@@ -686,7 +930,83 @@ $(document).ready(function(){
       var queFrom = $('.queFrom').find('option:selected').text(); 
       console.log(queFrom);
       var queTo = $('.queTo').find('option:selected').text();
-      queFlightLine(queFrom,queTo);
+      if(queFrom == queTo) {
+        alert("你在逗我？？？")
+      } else {
+        queFlightLine(queFrom,queTo);
+      }  
     }
+    //查询大巴
+    if($(event.target).is('.queBus')) {
+      var location = $('.queLoc').find('option:selected').text();
+      queBus(location);
+    }
+    //查询宾馆
+    if($(event.target).is('.queHotel')) {
+      var location = $('.queArea').find('option:selected').text();
+      queHotel(location);
+    }
+    //预定飞机
+    if($(event.target).is('button[name="orderFlight"]')) {
+      var tr = $(event.target).parents("tr");
+      var text = $($(tr).find("td")[0]).text();
+      var num = text.split(',');
+      var user = $(".userName").html();
+      console.log(user);
+      if(!user) {
+        alert("我还不知道你是谁？");
+        //添加用户弹窗
+        $("#login-modal").modal("show",{
+          keyboard: true
+        });
+      } else {
+        for (var i = num.length - 1; i >= 0; i--) {
+          orderFlight(user,num[i]);
+        }
+      }   
+      updateData();  
+    }
+    // 预定大巴
+    if($(event.target).is('button[name="orderBus"]')) {
+      var tr = $(event.target).parents("tr");
+      var num = $($(tr).find("td")[0]).text();
+      var user = $(".userName").html();
+      console.log(user);
+      if(!user) {
+        alert("我还不知道你是谁？");
+        //添加用户弹窗
+        $("#login-modal").modal("show",{
+          keyboard: true
+        });
+      } else {
+          orderBus(user,num);
+      }
+      updateData();
+    }
+    // 预定宾馆
+    if($(event.target).is('button[name="orderHot"]')) {
+      var tr = $(event.target).parents("tr");
+      var num = $($(tr).find("td")[0]).text();
+      var user = $(".userName").html();
+      console.log(user);
+      if(!user) {
+        alert("我还不知道你是谁？");
+        //添加用户弹窗
+        $("#login-modal").modal("show",{
+          keyboard: true
+        });
+      } else {
+          orderHot(user,num);
+      }
+      updateData();
+    }
+    // 查询用户
+    if($(event.target).is('.queUserBtn')) {
+      var user = $(".queUser").find("option:selected").text();
+      console.log(user);
+      $(".nowUser span").text(user);
+      getReserveMsg(user);
+    }
+    
 });
 })

@@ -49,10 +49,11 @@ module.exports = {
             });
         });
     },
-    queryAll: function (req, res, next) {
+    queryAll: function (req, cb) {
         pool.getConnection(function(err, connection) {
             connection.query($sql.queryAll, function(err, result) {
-                jsonWrite(res, result);
+                if(err) return cb(err);
+                cb(null, result); 
                 connection.release();
             });
         });

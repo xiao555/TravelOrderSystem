@@ -4,6 +4,7 @@ var router = express.Router();
 var flightDao = require('../dao/flightDao');
 var hotelDao = require('../dao/hotelDao');
 var busDao = require('../dao/busDao');
+var reserveDao = require('../dao/reserveDao');
 
 // var Handle = require('../controllers/index');
 
@@ -245,6 +246,63 @@ router.post("/queFlightPrice", function(req, res, next) {
 			})
 		}
 	})
+})
+
+// 预定航班
+router.post("/orderFlight", function(req, res, next) {
+	reserveDao.add(req, function(err, result) {
+		if(err) {
+			res.status(403).send({
+				msg: "预定失败"
+			})
+		} else {
+			res.status(200).send({
+				result: "预定成功"
+			})
+		}
+	})
+})
+// 预定宾馆
+router.post("/orderHot", function(req, res, next) {
+	reserveDao.add(req, function(err, result) {
+		if(err) {
+			res.status(403).send({
+				msg: "预定失败"
+			})
+		} else {
+			res.status(200).send({
+				result: "预定成功"
+			})
+		}
+	})
+})
+// 预定大巴
+router.post("/orderBus", function(req, res, next) {
+	reserveDao.add(req, function(err, result) {
+		if(err) {
+			res.status(403).send({
+				msg: "预定失败"
+			})
+		} else {
+			res.status(200).send({
+				result: "预定成功"
+			})
+		}
+	})
+})
+// 获取订单信息
+router.post('/getReserveMsg', function(req, res, next) {
+	reserveDao.queryByName(req, function(err,result) {
+		if(err) {
+			res.status(403).send({
+				msg: "获取失败"
+			})
+		} else {
+			res.status(200).send({
+				result: result
+			})
+		}
+	})	
 })
 
 

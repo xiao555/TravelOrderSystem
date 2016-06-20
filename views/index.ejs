@@ -135,17 +135,14 @@
               <table class="FlightLine">
                 <thead>
                   <tr>
+                    <th>航班编号</th>
                     <th>航线</th>
                     <th>价格</th>
                     <th>预定</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr target="1">
-                    <td></td>
-                    <td></td>
-                    <td><button type="button" name="order">预定</button></td>
-                  </tr>
+                  
                 </tbody>
               </table>
             </div>
@@ -165,13 +162,12 @@
                       </select>
                     </label>
                   </span>
-                <button class="addbutton" type="button" name="button">查询</button>
+                <button class="addbutton queBus" type="button" name="button">查询</button>
               </div>
-              <table>
+              <table class="queBusResult">
                 <thead>
                   <tr>
                     <th>大巴编号</th>
-                    <th>地区</th>
                     <th>价格</th>
                     <th>座位</th>
                     <th>剩余座位</th>
@@ -179,38 +175,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr target="2">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="button" name="order">预定</button></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="button" name="order">预定</button></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="button" name="order">预定</button></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="button" name="order">预定</button></td>
-                  </tr>
+                  
                 </tbody>
               </table>
             </div>
@@ -231,13 +196,12 @@
                       </select>
                     </label>
                 </span>
-                <button class="addbutton" type="button" name="button">查询</button>
+                <button class="addbutton queHotel" type="button" name="button">查询</button>
               </div>
-              <table>
+              <table class="queHotelResult">
                 <thead>
                   <tr>
                     <th>宾馆编号</th>
-                    <th>地区</th>
                     <th>价格</th>
                     <th>房间数</th>
                     <th>剩余房间</th>
@@ -245,38 +209,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr target="3">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="button" name="order">预定</button></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="button" name="order">预定</button></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="button" name="order">预定</button></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="button" name="order">预定</button></td>
-                  </tr>
+                  
                 </tbody>
               </table>
             </div>
@@ -305,13 +238,13 @@
                       </select>
                     </label>
                   </span>
-                  <button class="addbutton" type="button" name="button">查询</button>
+                  <button class="addbutton queUserBtn" type="button" name="button">查询</button>
                 </div>
                 <div class="nowUser msg">
                   当前用户： <span></span>
                 </div>
                 <div class="nowPrice msg">
-                  订单总额：1000RMB
+                  订单总额：<span></span>
                 </div>
                 <div class="iscomplet msg">
                   路线完整
@@ -332,7 +265,7 @@
                       航班
                     </div>
                     <div class="tel-content">
-                      <table>
+                      <table class="ordFlightMsg">
                         <thead>
                           <tr>
                             <th>航班编号</th>
@@ -357,7 +290,7 @@
                       大巴
                     </div>
                     <div class="tel-content">
-                      <table>
+                      <table class="ordBusMsg">
                         <thead>
                           <tr>
                             <th>大巴编号</th>
@@ -381,7 +314,7 @@
                       宾馆
                     </div>
                     <div class="tel-content">
-                      <table>
+                      <table class="ordHotMsg">
                         <thead>
                           <tr>
                             <th>大巴编号</th>
@@ -485,7 +418,7 @@
             </div>
         </div>
     </div><!-- /.modal -->
-
+    <div class="userName" style="display: none"></div>
     <!-- Jquery -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>

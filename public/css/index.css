@@ -242,6 +242,23 @@ option {
   height: 100%;
 }
 
+.orderBtn {
+  height: 26px;
+  width: 50px;
+  text-align: center;
+  line-height: 26px;
+  background-color: #2189bf;
+  opacity: .9;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 10px;
+}
+
+.orderBtn:hover {
+  font-size: 14px;
+  line-height: 26px;
+}
+
 button[name="modifi"],
 button[name="order"] {
   height: 26px;
